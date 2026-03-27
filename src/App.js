@@ -1,52 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TravelList from './components/TravelList';
 import './App.css';
 
 function App() {
-  // Временные тестовые данные
-  const travels = [
+  // Используем useState для управления данными о путешествиях
+  const [travels, setTravels] = useState([
     {
       id: 1,
       title: 'Отдых на Бали',
       country: 'Индонезия',
-      description: 'Пляжи, храмы и джунгли.'
+      description: 'Пляжи, храмы и джунгли. Райское место для релакса и серфинга.',
+      likes: 0
     },
     {
       id: 2,
       title: 'Сафари в Кении',
       country: 'Кения',
-      description: 'Наблюдение за дикими животными.'
+      description: 'Наблюдение за дикими животными в национальных парках.',
+      likes: 0
     },
     {
       id: 3,
       title: 'Горы Швейцарии',
       country: 'Швейцария',
-      description: 'Альпийские пейзажи и лыжи.'
+      description: 'Альпийские пейзажи, горнолыжные курорты и живописные озера.',
+      likes: 0
     },
     {
       id: 4,
-      title: 'Горы Швейцаfdfрии',
-      country: 'Швеdfария',
-      description: 'Альпdfdf лыжи.'
+      title: 'Гранд-Каньон',
+      country: 'США',
+      description: 'Один из самых глубоких каньонов в мире, потрясающие виды.',
+      likes: 0
     },
     {
       id: 5,
-      title: 'dfgdfgdf',
-      country: 'Швейgfgцария',
-      description: 'Алfgи.'
+      title: 'Мачу-Пикчу',
+      country: 'Перу',
+      description: 'Древний город инков в Андах, загадочное和历史ческое место.',
+      likes: 0
     },
     {
       id: 6,
-      title: 'fffff',
-      country: 'Швеdfария',
-      description: 'Аgf.'
+      title: 'Северное сияние в Норвегии',
+      country: 'Норвегия',
+      description: 'Удивительное природное явление в полярную ночь.',
+      likes: 0
     }
-  ];
+  ]);
+
+  // Функция-обработчик для увеличения количества лайков
+  const handleLike = (id) => {
+    setTravels(prevTravels => 
+      prevTravels.map(travel => 
+        travel.id === id 
+          ? { ...travel, likes: travel.likes + 1 }
+          : travel
+      )
+    );
+  };
 
   return (
     <div className="App">
       <h1>Каталог путешествий</h1>
-      <TravelList travels={travels} />
+      <TravelList travels={travels} onLike={handleLike} />
     </div>
   );
 }

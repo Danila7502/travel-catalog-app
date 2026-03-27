@@ -38,8 +38,15 @@ h1 {
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .travel-card button:hover {
   background-color: #ff5252;
+  transform: scale(1.05);
+}
+
+.travel-card button:active {
+  transform: scale(0.98);
 }
