@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TravelList from './components/TravelList';
 import Filter from './components/Filter';
+import AddTravelForm from './components/AddTravelForm';
 import './App.css';
 
 function App() {
@@ -73,9 +74,14 @@ function App() {
     setSelectedCountry(country);
   };
 
+  const handleAddTravel = (newTravel) => {
+    setTravels(prevTravels => [...prevTravels, newTravel]);
+  };
+
   return (
     <div className="App">
       <h1>Каталог путешествий</h1>
+      <AddTravelForm onAddTravel={handleAddTravel} />
       <Filter 
         countries={countries}
         selectedCountry={selectedCountry}
